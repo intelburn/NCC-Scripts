@@ -17,5 +17,5 @@ fi
 #set the destination to include an _sync
 dest=${dest}_sync/
 #Perform an rsync with the arguments for using the checksum, display verbose info, recursively, delete items from the destination not in the source, and to exclude the hidden files made by BT Sync
-rsync -c -v -r --delete --exclude=.* $SYNC/ $dest
+rsync -c -v -r --delete --exclude=.* $SYNC/$dest
 echo "Done"
