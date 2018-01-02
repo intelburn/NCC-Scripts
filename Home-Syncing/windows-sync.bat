@@ -15,8 +15,7 @@ goto CopySync
 
 :CopySync
 if not exist %DRIVE%:\_sync\ mkdir %DRIVE%:\_sync
-del /s /q %DRIVE%:\_sync\*
 cls
-robocopy %SYNC% %DRIVE%:\_sync\ /xd ".sync" /xf ".*" /e
+robocopy %SYNC% %DRIVE%:\_sync\ /xd ".sync" /xf ".*" /e /purge
 echo Done
 goto :eof
