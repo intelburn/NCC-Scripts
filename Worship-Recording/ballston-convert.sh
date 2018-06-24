@@ -6,10 +6,10 @@ ARCHIVE=/sync/Ballston-Archive
 if [ $(ls $NEW/ | grep --quiet .wav)==0 ] && [ $(ls $NEW/ | grep --quiet !sync)==1 ] ; then
 	#loop through all of the .wav files
 	for recording in $NEW/*.wav; do
-		#set up the new names for the files that end in .aac
-		compressed=`basename $recording .wav`.aac
+		#set up the new names for the files that end in .mp3
+		compressed=`basename $recording .wav`.mp3
 		#use ffmpeg to convert te recording and send the output to the Ballston-Record directory for syncing
-		ffmpeg -i $recording -b:a 256k -f aac $RECORD/$compressed
+		ffmpeg -i $recording -b:a 320k -f mp3 $RECORD/$compressed
 	done
 	#copy the recordings to the Ballston-Archive folder for syncing using rsync
 	rsync --checksum $RECORD/*.mp3 $ARCHIVE/
@@ -17,11 +17,6 @@ if [ $(ls $NEW/ | grep --quiet .wav)==0 ] && [ $(ls $NEW/ | grep --quiet !sync)=
 	for item in $(find $RECORD/ -name *.mp3 -mtime +30); do
         	echo "Currently removing $item"
         	rm $item
-	done
-	#check for .aac files in Ballston-Record that are older than 30 days and delet them
-	for item in $(find $RECORD/ -name *.aac -mtime +30); do
-					echo "Currently removing $item"
-					rm $item
 	done
 	#clean out the Ballston-New directory for next time through the script
 	rm $NEW/*.wav
