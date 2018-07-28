@@ -34,5 +34,5 @@ else
 fi
 clear
 rsync -c --progress -r --delete --exclude=.* $src ~/media
-rsync -c --progress -r ~/media/ ~/media-archive
+rsync -c --progress -r --exclude="[0-9][0-9]/-[0-9][0-9]/-[0-9][0-9].mov" ~/media/ ~/media-archive
 echo "Done"
