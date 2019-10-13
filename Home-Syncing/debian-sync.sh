@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Set SYNC to where Resilio is downloading the files to
-SYNC=
+SYNC=/fast/sync/ncc
 #Use select structure to locate drive for use as destination
 echo "Select destination:"
 select drive in /media/$(whoami)/*/ ;
